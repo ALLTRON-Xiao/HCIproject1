@@ -36,13 +36,27 @@ def build_finetune_model(base_model, img_shape=(IMG_SIZE, IMG_SIZE, 3), num_clas
         num_classes: 输出类别的数量
     """
     # frozen all
-    base_model.trainable = False
+    # base_model.trainable = False
 
-    # part frozen
+    # part frozen for res and mob
+    base_model.trainable = True
+    for layer in base_model.layers[:-10]: # unfrozen 10 if ResNet, 20 if Mob
+        layer.trainable = False
 
+    # if VGG16 use this part frozen
     # base_model.trainable = True
-    # for layer in base_model.layers[:-20]: # 冻结除了最后10层之外的所有层
-    #     layer.trainable = False
+
+    # # unfrozen block5 conv and pool
+    # set_trainable = False
+    # for layer in base_model.layers:
+    #     if layer.name == 'block5_conv1':
+    #         set_trainable = True
+    #     if set_trainable:
+    #         layer.trainable = True
+    #     else:
+    #         layer.trainable = False
+
+    
 
     # add layers to retrain
     inputs = layers.Input(shape=img_shape)
@@ -54,36 +68,43 @@ def build_finetune_model(base_model, img_shape=(IMG_SIZE, IMG_SIZE, 3), num_clas
 
     model = models.Model(inputs, outputs)
     return model
-# 模型1: ResNet50
-# print("\nLoading ResNet50...")
-# resnet_base = ResNet50(input_shape=(IMG_SIZE, IMG_SIZE, 3), include_top=False, weights='imagenet')
-# finetune_model_resnet = build_finetune_model(resnet_base)
+# 1: ResNet50
+print("\nLoading ResNet50...")
+resnet_base = ResNet50(input_shape=(IMG_SIZE, IMG_SIZE, 3), include_top=False, weights='imagenet')
+finetune_model = build_finetune_model(resnet_base)
 
-# 模型2: MobileNetV3 
+# 2: MobileNetV3 
 # print("\nLoading MobileNetV3Large...")
 # mobilenet_base = MobileNetV3Large(input_shape=(IMG_SIZE, IMG_SIZE, 3), include_top=False, weights='imagenet')
-# finetune_model_mobilenet = build_finetune_model(mobilenet_base)
+# finetune_model = build_finetune_model(mobilenet_base)
 
-#3 VGG
-vgg16_base = VGG16(input_shape=(IMG_SIZE, IMG_SIZE, 3), include_top=False, weights='imagenet')
-finetune_model_vgg16 = build_finetune_model(vgg16_base)
+# 3: VGG16
+# print("\nLoading VGG16...")
+# vgg16_base = VGG16(input_shape=(IMG_SIZE, IMG_SIZE, 3), include_top=False, weights='imagenet')
+# finetune_model = build_finetune_model(vgg16_base)
 
 # 编译微调模型
-finetune_model_vgg16.compile(optimizer=keras.optimizers.Adam(learning_rate=0.001),
+# finetune_model_vgg16.compile(optimizer=keras.optimizers.Adam(learning_rate=0.001),
+#                               loss='categorical_crossentropy',
+#                               metrics=['accuracy'])
+
+#if part frozen, lower learning rate
+finetune_model.compile(optimizer=keras.optimizers.Adam(learning_rate=1e-5),
                               loss='categorical_crossentropy',
                               metrics=['accuracy'])
 
-finetune_model_vgg16.summary()
+
+finetune_model.summary()
 
 # 训练微调模型
 # 注意：由于图像尺寸变大且模型更复杂，训练会比自定义CNN慢得多
-history_finetune = finetune_model_vgg16.fit(x_train_rgb, y_train,
+history_finetune = finetune_model.fit(x_train_rgb, y_train,
                                              epochs=5, # 先用较少的epoch进行尝试
                                              batch_size=64,
                                              validation_data=(x_test_rgb, y_test))
 
 # 评估微调模型
 print("\nEvaluating fine-tuned model on the test set...")
-score_finetune = finetune_model_vgg16.evaluate(x_test_rgb, y_test, verbose=0)
+score_finetune = finetune_model.evaluate(x_test_rgb, y_test, verbose=0)
 print(f"Fine-tuned model test loss: {score_finetune[0]}")
 print(f"Fine-tuned model test accuracy: {score_finetune[1]}")
