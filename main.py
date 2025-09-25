@@ -28,13 +28,7 @@ print(f"train data shape: {x_train_rgb.shape}")
 print(f"test data shape: {x_test_rgb.shape}")
 
 def build_finetune_model(base_model, img_shape=(IMG_SIZE, IMG_SIZE, 3), num_classes=10):
-    """
-    构建一个用于微调的通用模型。
-    Args:
-        base_model: 预加载的、不含顶层的Keras模型 (例如 ResNet50)
-        img_shape: 输入图像的尺寸
-        num_classes: 输出类别的数量
-    """
+
     # frozen all
     # base_model.trainable = False
 
@@ -60,11 +54,11 @@ def build_finetune_model(base_model, img_shape=(IMG_SIZE, IMG_SIZE, 3), num_clas
 
     # add layers to retrain
     inputs = layers.Input(shape=img_shape)
-    x = base_model(inputs, training=False) # 在推理模式下运行base_model
-    x = layers.GlobalAveragePooling2D()(x) # 添加全局平均池化层
-    x = layers.Dropout(0.3)(x) # 添加Dropout以防止过拟合
+    x = base_model(inputs, training=False)
+    x = layers.GlobalAveragePooling2D()(x)
+    x = layers.Dropout(0.3)(x)
     x = layers.Dense(256, activation='relu')(x)
-    outputs = layers.Dense(num_classes, activation='softmax')(x) # 新的输出层
+    outputs = layers.Dense(num_classes, activation='softmax')(x)
 
     model = models.Model(inputs, outputs)
     return model
@@ -83,8 +77,8 @@ finetune_model = build_finetune_model(resnet_base)
 # vgg16_base = VGG16(input_shape=(IMG_SIZE, IMG_SIZE, 3), include_top=False, weights='imagenet')
 # finetune_model = build_finetune_model(vgg16_base)
 
-# 编译微调模型
-# finetune_model_vgg16.compile(optimizer=keras.optimizers.Adam(learning_rate=0.001),
+# if fullfrozen
+# finetune_model.compile(optimizer=keras.optimizers.Adam(learning_rate=0.001),
 #                               loss='categorical_crossentropy',
 #                               metrics=['accuracy'])
 
@@ -96,14 +90,13 @@ finetune_model.compile(optimizer=keras.optimizers.Adam(learning_rate=1e-5),
 
 finetune_model.summary()
 
-# 训练微调模型
-# 注意：由于图像尺寸变大且模型更复杂，训练会比自定义CNN慢得多
+# retrain
 history_finetune = finetune_model.fit(x_train_rgb, y_train,
-                                             epochs=5, # 先用较少的epoch进行尝试
+                                             epochs=5,
                                              batch_size=64,
                                              validation_data=(x_test_rgb, y_test))
 
-# 评估微调模型
+# evlauate
 print("\nEvaluating fine-tuned model on the test set...")
 score_finetune = finetune_model.evaluate(x_test_rgb, y_test, verbose=0)
 print(f"Fine-tuned model test loss: {score_finetune[0]}")
