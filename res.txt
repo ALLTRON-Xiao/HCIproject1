@@ -1,0 +1,40 @@
+train data shape: (60000, 224, 224, 3)
+test data shape: (10000, 224, 224, 3)
+
+Loading ResNet50...
+Downloading data from https://storage.googleapis.com/tensorflow/keras-applications/resnet/resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5
+94765736/94765736 ━━━━━━━━━━━━━━━━━━━━ 1s 0us/step
+Model: "functional"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ input_layer_1 (InputLayer)           │ (None, 224, 224, 3)         │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ resnet50 (Functional)                │ (None, 7, 7, 2048)          │      23,587,712 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ global_average_pooling2d             │ (None, 2048)                │               0 │
+│ (GlobalAveragePooling2D)             │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout (Dropout)                    │ (None, 2048)                │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense (Dense)                        │ (None, 256)                 │         524,544 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_1 (Dense)                      │ (None, 10)                  │           2,570 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 24,114,826 (91.99 MB)
+ Trainable params: 527,114 (2.01 MB)
+ Non-trainable params: 23,587,712 (89.98 MB)
+Epoch 1/5
+938/938 ━━━━━━━━━━━━━━━━━━━━ 538s 569ms/step - accuracy: 0.5721 - loss: 1.2811 - val_accuracy: 0.8570 - val_loss: 0.6387
+Epoch 2/5
+938/938 ━━━━━━━━━━━━━━━━━━━━ 544s 579ms/step - accuracy: 0.7653 - loss: 0.7216 - val_accuracy: 0.8735 - val_loss: 0.4718
+Epoch 3/5
+938/938 ━━━━━━━━━━━━━━━━━━━━ 543s 579ms/step - accuracy: 0.8015 - loss: 0.5997 - val_accuracy: 0.9002 - val_loss: 0.3687
+Epoch 4/5
+938/938 ━━━━━━━━━━━━━━━━━━━━ 545s 581ms/step - accuracy: 0.8224 - loss: 0.5421 - val_accuracy: 0.8869 - val_loss: 0.3893
+Epoch 5/5
+938/938 ━━━━━━━━━━━━━━━━━━━━ 544s 579ms/step - accuracy: 0.8329 - loss: 0.5075 - val_accuracy: 0.9003 - val_loss: 0.3261
+
+Evaluating fine-tuned model on the test set...
+Fine-tuned model test loss: 0.32614925503730774
+Fine-tuned model test accuracy: 0.9003000259399414
