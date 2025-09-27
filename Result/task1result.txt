@@ -1,0 +1,90 @@
+It's copty from Colab
+
+task 1 results
+dropout op1 Model
+
+Compiling model with Adam optimizer... Epoch 1/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 41s 94ms/step - accuracy: 0.8193 - loss: 0.5794 - val_accuracy: 0.9843 - val_loss: 0.0551
+
+Epoch 2/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 40s 96ms/step - accuracy: 0.9721 - loss: 0.0902 - val_accuracy: 0.9885 - val_loss: 0.0419
+
+Epoch 3/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 39s 92ms/step - accuracy: 0.9808 - loss: 0.0609 - val_accuracy: 0.9895 - val_loss: 0.0362
+
+Epoch 4/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 41s 92ms/step - accuracy: 0.9836 - loss: 0.0516 - val_accuracy: 0.9920 - val_loss: 0.0320
+
+Epoch 5/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 41s 91ms/step - accuracy: 0.9878 - loss: 0.0400 - val_accuracy: 0.9932 - val_loss: 0.0310
+
+Evaluating model on the test set... Test loss: 0.026669852435588837 Test accuracy: 0.9908999800682068
+
+l1 op1 Model
+
+Compiling model with Adam optimizer... Epoch 1/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 40s 92ms/step - accuracy: 0.6828 - loss: 12.9285 - val_accuracy: 0.9357 - val_loss: 0.7671
+
+Epoch 2/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 38s 90ms/step - accuracy: 0.9188 - loss: 0.7957 - val_accuracy: 0.9510 - val_loss: 0.6190
+
+Epoch 3/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 38s 90ms/step - accuracy: 0.9432 - loss: 0.6409 - val_accuracy: 0.9543 - val_loss: 0.5933
+
+Epoch 4/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 41s 89ms/step - accuracy: 0.9511 - loss: 0.5801 - val_accuracy: 0.9638 - val_loss: 0.5401
+
+Epoch 5/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 38s 89ms/step - accuracy: 0.9546 - loss: 0.5513 - val_accuracy: 0.9663 - val_loss: 0.5030
+
+Evaluating model on the test set... Test loss: 0.5094234347343445 Test accuracy: 0.9634000062942505
+
+10epoch
+
+Evaluating model on the test set... Test loss: 0.45468002557754517 Test accuracy: 0.97079998254776
+
+l2 op1 Model
+
+Compiling model with Adam optimizer... Epoch 1/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 41s 93ms/step - accuracy: 0.8371 - loss: 1.2442 - val_accuracy: 0.9743 - val_loss: 0.1782
+
+Epoch 2/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 41s 92ms/step - accuracy: 0.9687 - loss: 0.1830 - val_accuracy: 0.9832 - val_loss: 0.1265
+
+Epoch 3/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 39s 92ms/step - accuracy: 0.9752 - loss: 0.1490 - val_accuracy: 0.9802 - val_loss: 0.1359
+
+Epoch 4/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 38s 91ms/step - accuracy: 0.9775 - loss: 0.1373 - val_accuracy: 0.9853 - val_loss: 0.1067
+
+Epoch 5/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 38s 91ms/step - accuracy: 0.9791 - loss: 0.1250 - val_accuracy: 0.9827 - val_loss: 0.1125
+
+Evaluating model on the test set... Test loss: 0.11370270699262619 Test accuracy: 0.9815999865531921
+
+dropout op2 Model
+
+Compiling model with SGD optimizer... Epoch 1/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 40s 92ms/step - accuracy: 0.3754 - loss: 1.8564 - val_accuracy: 0.9027 - val_loss: 0.3957
+
+Epoch 2/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 39s 93ms/step - accuracy: 0.8301 - loss: 0.5434 - val_accuracy: 0.9400 - val_loss: 0.2226
+
+Epoch 3/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 39s 93ms/step - accuracy: 0.8928 - loss: 0.3536 - val_accuracy: 0.9558 - val_loss: 0.1652
+
+Epoch 4/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 41s 97ms/step - accuracy: 0.9144 - loss: 0.2795 - val_accuracy: 0.9640 - val_loss: 0.1374
+
+Epoch 5/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 39s 93ms/step - accuracy: 0.9287 - loss: 0.2360 - val_accuracy: 0.9690 - val_loss: 0.1206
+
+Evaluating model on the test set... Test loss: 0.1331055611371994 Test accuracy: 0.9616000056266785
+
+L1 op2 Model
+
+Compiling model with SGD optimizer... Epoch 1/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 39s 91ms/step - accuracy: 0.4176 - loss: 44.2452 - val_accuracy: 0.8305 - val_loss: 6.2078
+
+Epoch 2/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 38s 91ms/step - accuracy: 0.7254 - loss: 3.5414 - val_accuracy: 0.8028 - val_loss: 1.1839
+
+Epoch 3/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 41s 91ms/step - accuracy: 0.8208 - loss: 1.1017 - val_accuracy: 0.8832 - val_loss: 0.8287
+
+Epoch 4/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 41s 91ms/step - accuracy: 0.8574 - loss: 0.8772 - val_accuracy: 0.9145 - val_loss: 0.6779
+
+Epoch 5/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 41s 91ms/step - accuracy: 0.8713 - loss: 0.8038 - val_accuracy: 0.9057 - val_loss: 0.6777
+
+Evaluating model on the test set... Test loss: 0.7108889222145081 Test accuracy: 0.8937000036239624
+
+l2 op2 Model
+
+Compiling model with SGD optimizer... Epoch 1/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 39s 91ms/step - accuracy: 0.4663 - loss: 4.1399 - val_accuracy: 0.9073 - val_loss: 2.3613
+
+Epoch 2/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 41s 91ms/step - accuracy: 0.8912 - loss: 2.3110 - val_accuracy: 0.9363 - val_loss: 1.9404
+
+Epoch 3/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 41s 91ms/step - accuracy: 0.9239 - loss: 1.9095 - val_accuracy: 0.9523 - val_loss: 1.6362
+
+Epoch 4/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 38s 91ms/step - accuracy: 0.9410 - loss: 1.6073 - val_accuracy: 0.9562 - val_loss: 1.4014
+
+Epoch 5/5 422/422 ━━━━━━━━━━━━━━━━━━━━ 41s 91ms/step - accuracy: 0.9513 - loss: 1.3628 - val_accuracy: 0.9685 - val_loss: 1.1777
+
+Evaluating model on the test set... Test loss: 1.1895055770874023 Test accuracy: 0.9606000185012817
