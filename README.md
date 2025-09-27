@@ -41,4 +41,10 @@ Result floder:
     res.txt, mob.txt, vgg.txt is all frozen result of task2, 'res' represent Resnet-50, 'mob' represent MobileNetV3-Large, 'vgg' represent VGG16;
     
     frozenxx(_ll)_yy.txt is part frozen result of task2, 'xx' means which part unfrozen, 'll' means use lower learning rate, 'yy' means model name;
+
+    task3cameraresult.mp4 is screen recording for task3 use camera;
+
+    task3videoresult_sf.mp4 is screen recording for task3 use video small_f.mp4;
+
+    task3videoresult_sn.mp4 is screen recording for task3 use video small_n.mp4;
     
